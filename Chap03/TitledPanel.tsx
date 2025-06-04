@@ -1,17 +1,12 @@
-import React from "react";
+import React from 'react';
 
-type TitledPanel = {
-  children: React.ReactNode;
-}
+type TitledPanelProps = {
+  children: React.ReactElement[];
+};
 
-export default function Hello({ children }: TitledPanel) {
-  const childrenArray = React.Children.toArray(children);
-  const title = childrenArray.find(child =>
-    React.isValidElement(child) && child.key === 'title'
-  );
-  const body = childrenArray.find(child =>
-    React.isValidElement(child) && child.key === 'body'
-  );
+export default function TitledPanel({ children }: TitledPanelProps) {
+  const title = children.find(elem => elem.key === 'title');
+  const body = children.find(elem => elem.key === 'body')
   return (
     <div style={{
       margin: 50,
@@ -25,5 +20,5 @@ export default function Hello({ children }: TitledPanel) {
       <hr />
       {body}
     </div>
-  )
+  );
 }
